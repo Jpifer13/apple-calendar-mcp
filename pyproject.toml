@@ -1,0 +1,32 @@
+[project]
+name = "apple-calendar-mcp"
+version = "0.1.0"
+description = "MCP server that lets Claude read and manage Apple Calendar on macOS via EventKit."
+readme = "README.md"
+requires-python = ">=3.11,<4.0"
+license = { text = "MIT" }
+authors = [{ name = "Jpifer13", email = "jakepifer3@gmail.com" }]
+keywords = ["mcp", "calendar", "macos", "eventkit"]
+
+dependencies = [
+    "mcp>=2.3,<3",
+    "pydantic>=2.9",
+    "pyobjc-framework-EventKit>=10.3; sys_platform == 'darwin'",
+]
+
+[project.scripts]
+apple-calendar-mcp = "apple_calendar_mcp.__main__:main"
+
+[tool.poetry]
+packages = [{ include = "apple_calendar_mcp", from = "src" }]
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[build-system]
+requires = ["poetry-core>=2.0"]
+build-backend = "poetry.core.masonry.api"
