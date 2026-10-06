@@ -21,8 +21,8 @@ calls of its own.
 ## Install
 
 ```bash
-git clone <this repo> apple_calendar_mcp
-cd apple_calendar_mcp
+git clone https://github.com/Jpifer13/apple-calendar-mcp.git
+cd apple-calendar-mcp
 poetry install
 ```
 
@@ -42,8 +42,11 @@ The first run triggers the macOS calendar permission prompt. Click **Allow**.
 ### Claude Code
 
 ```bash
-claude mcp add apple-calendar -- /full/path/to/apple_calendar_mcp/.venv/bin/apple-calendar-mcp
+claude mcp add apple-calendar --scope user -- "$(pwd)/.venv/bin/apple-calendar-mcp"
 ```
+
+`--scope user` makes the server available in every project rather than only the
+directory it was added from. Drop the flag to limit it to one project.
 
 ### Claude Desktop
 
@@ -53,7 +56,7 @@ Add this to `~/Library/Application Support/Claude/claude_desktop_config.json`:
 {
   "mcpServers": {
     "apple-calendar": {
-      "command": "/full/path/to/apple_calendar_mcp/.venv/bin/apple-calendar-mcp"
+      "command": "/absolute/path/to/apple-calendar-mcp/.venv/bin/apple-calendar-mcp"
     }
   }
 }
